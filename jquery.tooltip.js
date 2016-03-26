@@ -3,7 +3,7 @@
  * Description:：
  *       <a data-content='content'></a>
  *      调用方法：$('#element').tooltip({'color':'#000'});
- *      使用要求：该方法由父元素调用,需要引入.ToolTipBox基本样式
+ *      使用要求：需要引入.ToolTipBox基本样式以及jQuery
  * Version: 1.1
  * Author: Dongyuhao
  * created: March 27, 2016
@@ -51,7 +51,8 @@
                         return false;
                     }
 
-                    me.append('<div class="'+config._tooltipBoxClass+'">'+config.content+'</div>').children('.'+config._tooltipBoxClass).css('display','block');
+                    me.append('<div class="'+config._tooltipBoxClass+'">'+config.content+'</div>').
+                                children('.'+config._tooltipBoxClass).css('display','block');
                     toolTipBox = me.children('.'+config._tooltipBoxClass);
 
                     /*设置参数*/
