@@ -9,8 +9,8 @@ jquery.tooltip.js
              <a id='demoEl' title='demoEl' data-content='content'></a>
              $('#demoEl').tooltip({'color':'#000'});
 
-        替换content为想要被tooltip展示的内容，在tooltip()内以传入options即可，例如文字，图片，网站，以及其他你能想到的东东~
-        需要自己定义内容相关样式。
+        替换content为想要被tooltip展示的内容，在tooltip()内以传入options即可，
+        例如文字，图片，网站，以及其他你能想到的东东~需要自己定义内容相关样式。
 
 
 ### Options(自定义属性)
@@ -22,7 +22,9 @@ jquery.tooltip.js
 ### Attention(注意事项)
 *       插件内部默认会使用toolTipBox作为元素类名，为了避免代码冲突，请避免使用toolTipBox作为元素类名，
         或在插件内修改_tooltipBoxClass参数亦可。
-*       内容显示优先级：
+*       内容显示优先级：<br />
             data-content > title
             当data-content和title都为空时不会显示tooltip
 
+### Demo Link(演示链接)
+1.[click here to demo](http://dyh1995.github.io/jquery.tooltip.js/)<br />
