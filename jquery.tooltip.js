@@ -3,9 +3,9 @@
  * Description:：
  *       <a data-content='content'></a>
  *      调用方法：$('#element').tooltip({'color':'#000'});
- *      使用要求：该方法由父元素调用,需要引入.ToolTipBox基本样式
+ *      使用要求：需要引入.ToolTipBox基本样式以及jQuery
  * Version: 1.1
- * Author: Dongyuhao
+ * Author: Dong Yuhao
  * created: March 27, 2016
  */
 ;(function ($, window, document, undefined) {
@@ -26,6 +26,26 @@
         /*$.extend 方法执行覆盖。jQuery 的 $.extend 方法合并两个或多个对象*/
         var config = $.extend($.fn.tooltip.defaults, options||{});
         var title;
+
+        var _getWindowWidth = function () {
+            if ( window.innerWidth ) {
+                return window.innerWidth;
+            } else if ( document.documentElement && document.documentElement.clientWidth ) {
+                return document.documentElement.clientWidth;
+            } else if ( document.body && document.body.clientWidth){
+                return document.body.clientWidth;
+            }
+        };
+
+        var _getWindowHeight = function () {
+            if ( window.innerHeight ) {
+                return window.innerHeight;
+            } else if ( document.documentElement && document.documentElement.clientHeight ) {
+                return document.documentElement.clientHeight;
+            } else if ( document.body && document.body.clientHeight){
+                return document.body.clientHeight;
+            }
+        };
 
         return this.each(function () {
             var me = $(this);
@@ -51,7 +71,8 @@
                         return false;
                     }
 
-                    me.append('<div class="'+config._tooltipBoxClass+'">'+config.content+'</div>').children('.'+config._tooltipBoxClass).css('display','block');
+                    me.append('<div class="'+config._tooltipBoxClass+'">'+config.content+'</div>').
+                                children('.'+config._tooltipBoxClass).css('display','block');
                     toolTipBox = me.children('.'+config._tooltipBoxClass);
 
                     /*设置参数*/
@@ -64,14 +85,14 @@
                     var relativeY = mouse_pageY - elem_pageY;
                     var relativeX = mouse_pageX - elem_pageX;
 
-                    if ( elem_css_left + relativeX + toolTipBox.width() > getWindowWidth() - 50 ) {
+                    if ( elem_css_left + relativeX + toolTipBox.width() > _getWindowWidth() - 50 ) {
                         toolTipBox.width(toolTipBox.width()*0.4+'px');
                         config._posX = elem_css_left + relativeX - toolTipBox.width()/2;
                     } else {
                         config._posX = elem_css_left + relativeX + 15;
                     }
 
-                    if(elem_css_top + relativeY + toolTipBox.height() > getWindowHeight()){
+                    if(elem_css_top + relativeY + toolTipBox.height() > _getWindowHeight()){
                         toolTipBox.height(toolTipBox.height()*0.4+'px');
                     }
 
@@ -95,24 +116,4 @@
         });
     };
 
-
-    function getWindowWidth () {
-        if ( window.innerWidth ) {
-            return window.innerWidth;
-        } else if ( document.documentElement && document.documentElement.clientWidth ) {
-            return document.documentElement.clientWidth;
-        } else if ( document.body && document.body.clientWidth){
-            return document.body.clientWidth;
-        }
-    }
-
-    function getWindowHeight () {
-        if ( window.innerHeight ) {
-            return window.innerHeight;
-        } else if ( document.documentElement && document.documentElement.clientHeight ) {
-            return document.documentElement.clientHeight;
-        } else if ( document.body && document.body.clientHeight){
-            return document.body.clientHeight;
-        }
-    }
 })(jQuery, window, document);
